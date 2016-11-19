@@ -10,35 +10,58 @@
 		<p>
 			Creative code jam
 		</p>
-
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 		<script type="text/javascript">
 
-		// if (navigator.geolocation) {
-		//     navigator.geolocation.getCurrentPosition(success);
-		// }
-		// function success(position) {
-		//     console.log('Latitude: ' + position.coords.latitude);
-		//     console.log('Longitude: ' + position.coords.longitude);
-		// }
+			// Web server's IP address
+			var socket = io('http://192.168.2.221:3000');
 
 			if (window.DeviceMotionEvent) {
 			    window.addEventListener('devicemotion', function(eventData) {
-			        // Acceleration
-			        // console.log('acceleration', eventData.acceleration.x);
-			        // console.log(eventData.acceleration.y);
-			        // console.log(eventData.acceleration.z);
 
-			        // Acceleration including gravity
-			        console.log(eventData.accelerationIncludingGravity.x);
-			        console.log(eventData.accelerationIncludingGravity.y);
-			        console.log(eventData.accelerationIncludingGravity.z);
+							var phoneMotion = {
+								acceleration: {
+									x: eventData.acceleration.x,
+									y: eventData.acceleration.y,
+									z: eventData.acceleration.z
+								},
+								rotationRate: {
+									alpha: eventData.rotationRate.alpha,
+									beta: eventData.rotationRate.beta,
+									gamma: eventData.rotationRate.gamma
+								}
+							};
 
-			        // Rotation rate // Unsupported on the testing device
-			        // console.log('rotation rate', eventData.rotationRate.alpha);
-			        // console.log(eventData.rotationRate.beta);
-			        // console.log(eventData.rotationRate.gamma);
+							console.log(phoneMotion);
+							// 'phonemotion' is the name we agreed on with the server
+							socket.emit('phonemotion', phoneMotion);
 			    }, false);
 			}
+
+			// if('ondeviceproximity' in window) {
+			//     // Fired when object is in the detection zone
+			//     window.addEventListener('deviceproximity', function(event) {
+			//         // Object distance in centimeters
+			//         console.log(event.value + " centimeters");
+			//     });
+			// } else {
+			//     console.log("deviceproximity not supported");
+			// }
+			//
+			// if('ondeviceproximity' in window){
+			//     // Fired when object is in the detection zone
+			//     window.addEventListener('userproximity', function(event) {
+			//         if(event.near == true) {
+			//             console.log("Object is near");
+			//         } else {
+			//             console.log("Object is far");
+			//         }
+			//     });
+			// } else {
+			//     console.log("userproximity not supported");
+			// }
+
+
 		</script>
 	</body>
 </html>
