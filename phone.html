@@ -11,7 +11,6 @@
 			Creative code jam
 		</p>
 
-		<!-- <script src="https://jsconsole.com/js/remote.js?b7270b2a-7490-4eab-a8a8-487e5c8dd096"></script> -->
 		<script type="text/javascript">
 
 		// Check support
@@ -26,12 +25,12 @@
 		if (window.DeviceMotionEvent) {
     window.addEventListener('devicemotion', function(eventData) {
         // Acceleration
-        // console.log(eventData.acceleration.x);
+        console.log('acceleration', eventData.acceleration.x);
         // console.log(eventData.acceleration.y);
         // console.log(eventData.acceleration.z);
 
         // Acceleration including gravity
-        // console.log(eventData.accelerationIncludingGravity.x);
+        console.log('g-acceleration', eventData.accelerationIncludingGravity.x);
         // console.log(eventData.accelerationIncludingGravity.y);
         // console.log(eventData.accelerationIncludingGravity.z);
 				//
