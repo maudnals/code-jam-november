@@ -4,7 +4,8 @@ body{
   font-size: 10em;
   color: white;
   margin: .2em !important;
-  background: black;
+  background-color: black;
+	transition: background-color 0.5s ease;
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: .1em;
